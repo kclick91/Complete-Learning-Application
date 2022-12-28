@@ -50,7 +50,8 @@ public class Events implements ActionListener {
     JButton nextButton;
     JButton prevButton;
 
-    int packCount = 0;
+    int packCount = 1;
+    int cardCount = 1;
 
     public Events()
     {
@@ -91,13 +92,16 @@ public class Events implements ActionListener {
 
 
         cardDisplayFront = new JLabel();
-        cardDisplayFront.setText("FRONT OF CARD");
-        cardDisplayFront.setBounds(900, 100, 200, 400);
+        cardDisplayFront.setText("FRONT OF CARD SHOWN HERE TEST");
+        cardDisplayFront.setBounds(900, 100, 300, 400);
 
         cardDisplayBack = new JLabel();
-        cardDisplayBack.setText("BACK OF CARD");
-        cardDisplayBack.setBounds(900, 100, 200, 600);
+        cardDisplayBack.setText("BACK OF CARD SHOWN HERE TEST");
+        cardDisplayBack.setBounds(900, 100, 300, 600);
 
+
+        notecardPack = new NotecardPack("First Pack",1);
+        noteCardPacks.add(notecardPack);
 
 
 
@@ -184,6 +188,8 @@ public class Events implements ActionListener {
         bAddNewCard.addActionListener(this::actionPerformed);
         //Button that adds pack of notecards
         bAddPack.addActionListener(this::actionPerformedTwo);
+        nextButton.addActionListener(this::actionPerformedThree);
+        prevButton.addActionListener(this::actionPerformedFour);
     }
 
 
@@ -194,8 +200,14 @@ public class Events implements ActionListener {
         System.out.println(frontField.getText());
         System.out.println(backField.getText());
         System.out.println(lPack.getText());
-        notecardPack = new NotecardPack(packName.getText(), packCount);
+        cardCount = cardCount + 1;
+
+        //packCount
+        //notecardPack = new NotecardPack(packName.getText(), packCount);
+        /*
         notecardPack.AddToPack(new Notecard(frontField.getText(), backField.getText()));
+        noteCardPacks.add(notecardPack);
+        */
 
         labelAdded.setText("Added: ");
         labelAddedTwo.setText(frontField.getText());
@@ -204,6 +216,9 @@ public class Events implements ActionListener {
 
         //Get notecardPack.get(iD - 1).front
 
+        //notecardPack.AddToPack(new Notecard(frontField.getText(), backField.getText()));
+
+        noteCardPacks.get(0).AddToPack(new Notecard(frontField.getText(), backField.getText()));
 
 
 
@@ -228,5 +243,52 @@ public class Events implements ActionListener {
 
 
     }
+
+    public void actionPerformedThree(ActionEvent e) {
+        //Next
+
+        //NotecardPack np = noteCardPacks.get(packCount - 1);
+
+        if (cardCount < noteCardPacks.get(0).GetList().size())
+        {
+            cardCount = cardCount + 1;
+            System.out.println("CC: " + cardCount);
+        }
+        else
+        {
+            cardCount = 1;
+            System.out.println("CC: " + cardCount);
+        }
+
+        cardDisplayFront.setText(noteCardPacks.get(0).GetCard(cardCount).GetFront());
+        cardDisplayBack.setText(noteCardPacks.get(0).GetCard(cardCount).GetBack());
+
+
+
+    }
+
+    public void actionPerformedFour(ActionEvent e) {
+        //Previous
+
+        //NotecardPack np = noteCardPacks.get(packCount);
+        if (cardCount == 1)
+        {
+            cardCount = noteCardPacks.get(0).GetList().size();
+            System.out.println("CC: " + cardCount);
+        }
+        else
+        {
+            cardCount = cardCount - 1;
+            System.out.println("CC: " + cardCount);
+        }
+
+        cardDisplayFront.setText(noteCardPacks.get(0).GetCard(cardCount).GetFront());
+        cardDisplayBack.setText(noteCardPacks.get(0).GetCard(cardCount).GetBack());
+
+
+
+
+    }
+
 
 }

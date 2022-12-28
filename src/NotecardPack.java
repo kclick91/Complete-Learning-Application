@@ -22,4 +22,13 @@ public class NotecardPack {
         cardsList.add(nc);
         System.out.println("Added notecard for: " + nc.GetFront());
     }
+    public ArrayList<Notecard> GetList()
+    {
+        return cardsList;
+    }
+    public Notecard GetCard(int index)
+    {
+        return cardsList.get(index - 1);
+    }
+
 }
