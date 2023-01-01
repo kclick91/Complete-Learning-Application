@@ -33,6 +33,7 @@ public class Events implements ActionListener {
     JButton bAddNewCard;
     JButton bAddPack;
     JButton bCoverBack;
+    JButton setPack;
     boolean backCovered= false;
     JTextField frontField;
     JTextField backField;
@@ -44,10 +45,16 @@ public class Events implements ActionListener {
     JLabel labelAddedTwo = new JLabel();
     JLabel labelAddedThree = new JLabel();
     JLabel labelAddedFour = new JLabel();
+    JLabel labelAddedFive = new JLabel();
     JLabel packAdded = new JLabel();
     JLabel packAddedCount = new JLabel();
     JLabel cardDisplayFront;
     JLabel cardDisplayBack;
+    int packNumber = 1;
+    JTextField packIDTF = new JTextField();
+    JLabel enterLabel = new JLabel();
+    JTextField enterID = new JTextField();
+    JLabel setPackIDLabel = new JLabel();
 
     ArrayList<NotecardPack> noteCardPacks = new ArrayList<NotecardPack>();
 
@@ -83,11 +90,17 @@ public class Events implements ActionListener {
         //bNum = new JButton("Card Number");
         //bNum.setBounds(50, 200, 230, 30);
         lPack = new JLabel("PACK NAME");
+
         lPack.setLocation(50, 200);
         lPack.setSize(300, 30);
 
+        enterLabel.setText("Add To Pack ID");
+        enterLabel.setBounds(50, 250, 300, 30);
+        enterID.setText("1");
+        enterID.setBounds(350, 250, 150, 20);
+
         bAddNewCard = new JButton("Add This New Card");
-        bAddNewCard.setBounds(50, 250, 230, 30);
+        bAddNewCard.setBounds(50, 300, 230, 30);
         bAddPack = new JButton("Add a Pack of Notecards");
         bAddPack.setBounds(50, 500, 230, 30);
 
@@ -117,6 +130,17 @@ public class Events implements ActionListener {
         notecardPack = new NotecardPack("First Pack",1);
         noteCardPacks.add(notecardPack);
 
+        setPack = new JButton();
+        setPack.setText("Set Pack ID");
+        setPack.setBounds(900, 100, 100, 30);
+
+        setPackIDLabel.setText("CURRENT PACK");
+        setPackIDLabel.setBounds(900,130, 100, 30);
+
+        packIDTF.setBounds(900, 50, 100, 30);
+        packIDTF.setText(String.valueOf(1));
+
+
 
 
 
@@ -129,7 +153,7 @@ public class Events implements ActionListener {
         tf2=new JTextField();  
         tf2.setBounds(50,100,150,20);  
          */
-        JLabel label = new JLabel("Complete Learning Application");
+        JLabel label = new JLabel("Complete Learning Application Notecard Page");
         label.setLocation(50, 50);
         label.setSize(300,30);
         frontField = new JTextField();
@@ -163,10 +187,11 @@ public class Events implements ActionListener {
         packAddedCount.setBounds(550, 520, 250, 20);
 
 
-        labelAdded.setBounds(50, 110, 530, 400);
-        labelAddedTwo.setBounds(50, 130, 530, 400);
-        labelAddedThree.setBounds(50, 150, 530, 400);
-        labelAddedFour.setBounds(50, 170, 530, 400);
+        labelAdded.setBounds(50, 140, 530, 400);
+        labelAddedTwo.setBounds(50, 160, 530, 400);
+        labelAddedThree.setBounds(50, 180, 530, 400);
+        labelAddedFour.setBounds(50, 200, 530, 400);
+        labelAddedFive.setBounds(50, 220, 530, 400);
 
 
         //Add name field for notecard pack
@@ -193,7 +218,12 @@ public class Events implements ActionListener {
         frame.getContentPane().add(labelAddedTwo);
         frame.getContentPane().add(labelAddedThree);
         frame.getContentPane().add(labelAddedFour);
-
+        frame.getContentPane().add(labelAddedFive);
+        frame.getContentPane().add(packIDTF);
+        frame.getContentPane().add(setPack);
+        frame.getContentPane().add(enterID);
+        frame.getContentPane().add(enterLabel);
+        frame.getContentPane().add(setPackIDLabel);
         //frame.getContentPane().add(packID);
         //frame.doLayout();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -206,6 +236,7 @@ public class Events implements ActionListener {
         nextButton.addActionListener(this::actionPerformedThree);
         prevButton.addActionListener(this::actionPerformedFour);
         bCoverBack.addActionListener(this::actionPerformedFive);
+        setPack.addActionListener(this::actionPerformedSix);
     }
 
 
@@ -216,6 +247,7 @@ public class Events implements ActionListener {
         System.out.println(frontField.getText());
         System.out.println(backField.getText());
         System.out.println(lPack.getText());
+        System.out.println(enterID.getText());
         cardCount = cardCount + 1;
 
         //packCount
@@ -229,12 +261,13 @@ public class Events implements ActionListener {
         labelAddedTwo.setText(frontField.getText());
         labelAddedThree.setText(backField.getText());
         labelAddedFour.setText(packName.getText());
+        labelAddedFive.setText(enterID.getText());
 
         //Get notecardPack.get(iD - 1).front
 
         //notecardPack.AddToPack(new Notecard(frontField.getText(), backField.getText()));
 
-        noteCardPacks.get(0).AddToPack(new Notecard(frontField.getText(), backField.getText()));
+        noteCardPacks.get(Integer.parseInt(enterID.getText()) - 1).AddToPack(new Notecard(frontField.getText(), backField.getText()));
 
 
 
@@ -265,7 +298,7 @@ public class Events implements ActionListener {
 
         //NotecardPack np = noteCardPacks.get(packCount - 1);
 
-        if (cardCount < noteCardPacks.get(0).GetList().size())
+        if (cardCount < noteCardPacks.get(packNumber - 1).GetList().size())
         {
             cardCount = cardCount + 1;
             System.out.println("CC: " + cardCount);
@@ -276,10 +309,10 @@ public class Events implements ActionListener {
             System.out.println("CC: " + cardCount);
         }
 
-        cardDisplayFront.setText(noteCardPacks.get(0).GetCard(cardCount).GetFront());
+        cardDisplayFront.setText(noteCardPacks.get(packNumber - 1).GetCard(cardCount).GetFront());
         if (backCovered == false)
         {
-            cardDisplayBack.setText(noteCardPacks.get(0).GetCard(cardCount).GetBack());
+            cardDisplayBack.setText(noteCardPacks.get(packNumber - 1).GetCard(cardCount).GetBack());
         }
         else
         {
@@ -296,7 +329,7 @@ public class Events implements ActionListener {
         //NotecardPack np = noteCardPacks.get(packCount);
         if (cardCount == 1)
         {
-            cardCount = noteCardPacks.get(0).GetList().size();
+            cardCount = noteCardPacks.get(packNumber - 1).GetList().size();
             System.out.println("CC: " + cardCount);
         }
         else
@@ -305,10 +338,10 @@ public class Events implements ActionListener {
             System.out.println("CC: " + cardCount);
         }
 
-        cardDisplayFront.setText(noteCardPacks.get(0).GetCard(cardCount).GetFront());
+        cardDisplayFront.setText(noteCardPacks.get(packNumber - 1).GetCard(cardCount).GetFront());
         if (backCovered == false)
         {
-            cardDisplayBack.setText(noteCardPacks.get(0).GetCard(cardCount).GetBack());
+            cardDisplayBack.setText(noteCardPacks.get(packNumber - 1).GetCard(cardCount).GetBack());
         }
         else
         {
@@ -331,7 +364,11 @@ public class Events implements ActionListener {
             backCovered = false;
         }
     }
-
+    public void actionPerformedSix(ActionEvent e)
+    {
+        packNumber = Integer.parseInt(packIDTF.getText());
+        setPackIDLabel.setText(String.valueOf(packNumber));
+    }
 
 
 }
