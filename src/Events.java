@@ -5,6 +5,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 
+//To do List
+//1. Hide back side of notecard - DONE
+//2. Access notecard packs by ID and use more than one notecard
+
 public class Events implements ActionListener {
     //TextField text = new TextField(50);
     //TextField textTwo = new TextField(50);
@@ -28,6 +32,8 @@ public class Events implements ActionListener {
 
     JButton bAddNewCard;
     JButton bAddPack;
+    JButton bCoverBack;
+    boolean backCovered= false;
     JTextField frontField;
     JTextField backField;
     JTextField packName;
@@ -49,6 +55,9 @@ public class Events implements ActionListener {
 
     JButton nextButton;
     JButton prevButton;
+    JButton showOnlyFrontForward;
+    JButton showOnlyFrontBackward;
+    JButton showRandom;
 
     int packCount = 1;
     int cardCount = 1;
@@ -89,6 +98,11 @@ public class Events implements ActionListener {
         nextButton = new JButton();
         nextButton.setText("Next");
         nextButton.setBounds(1050, 500, 100, 30);
+        //Cover back of card
+        bCoverBack = new JButton();
+        bCoverBack.setText("Cover Back of Card");
+        bCoverBack.setBounds(900, 550, 250, 30);
+
 
 
         cardDisplayFront = new JLabel();
@@ -174,6 +188,7 @@ public class Events implements ActionListener {
         frame.getContentPane().add(cardDisplayBack);
         frame.getContentPane().add(prevButton);
         frame.getContentPane().add(nextButton);
+        frame.getContentPane().add(bCoverBack);
         frame.getContentPane().add(labelAdded);
         frame.getContentPane().add(labelAddedTwo);
         frame.getContentPane().add(labelAddedThree);
@@ -190,6 +205,7 @@ public class Events implements ActionListener {
         bAddPack.addActionListener(this::actionPerformedTwo);
         nextButton.addActionListener(this::actionPerformedThree);
         prevButton.addActionListener(this::actionPerformedFour);
+        bCoverBack.addActionListener(this::actionPerformedFive);
     }
 
 
@@ -261,7 +277,14 @@ public class Events implements ActionListener {
         }
 
         cardDisplayFront.setText(noteCardPacks.get(0).GetCard(cardCount).GetFront());
-        cardDisplayBack.setText(noteCardPacks.get(0).GetCard(cardCount).GetBack());
+        if (backCovered == false)
+        {
+            cardDisplayBack.setText(noteCardPacks.get(0).GetCard(cardCount).GetBack());
+        }
+        else
+        {
+            cardDisplayBack.setText("BACK IS HIDDEN");
+        }
 
 
 
@@ -283,12 +306,32 @@ public class Events implements ActionListener {
         }
 
         cardDisplayFront.setText(noteCardPacks.get(0).GetCard(cardCount).GetFront());
-        cardDisplayBack.setText(noteCardPacks.get(0).GetCard(cardCount).GetBack());
+        if (backCovered == false)
+        {
+            cardDisplayBack.setText(noteCardPacks.get(0).GetCard(cardCount).GetBack());
+        }
+        else
+        {
+            cardDisplayBack.setText("BACK IS HIDDEN");
+        }
+
 
 
 
 
     }
+    public void actionPerformedFive(ActionEvent e)
+    {
+        if (backCovered == false)
+        {
+            backCovered = true;
+        }
+        else
+        {
+            backCovered = false;
+        }
+    }
+
 
 
 }
