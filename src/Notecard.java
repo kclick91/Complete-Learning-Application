@@ -1,6 +1,9 @@
+import java.util.ArrayList;
+
 public class Notecard {
     private String front;
     private String back;
+
 
     public Notecard()
     {

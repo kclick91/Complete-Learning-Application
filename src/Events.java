@@ -120,11 +120,11 @@ public class Events implements ActionListener {
 
         cardDisplayFront = new JLabel();
         cardDisplayFront.setText("FRONT OF CARD SHOWN HERE TEST");
-        cardDisplayFront.setBounds(900, 100, 300, 400);
+        cardDisplayFront.setBounds(900, 100, 950, 400);
 
         cardDisplayBack = new JLabel();
         cardDisplayBack.setText("BACK OF CARD SHOWN HERE TEST");
-        cardDisplayBack.setBounds(900, 100, 300, 600);
+        cardDisplayBack.setBounds(900, 100, 950, 600);
 
 
         notecardPack = new NotecardPack("First Pack",1);
@@ -139,6 +139,9 @@ public class Events implements ActionListener {
 
         packIDTF.setBounds(900, 50, 100, 30);
         packIDTF.setText(String.valueOf(1));
+
+        //Web of cards
+        //Relations between cards
 
 
 
@@ -187,11 +190,11 @@ public class Events implements ActionListener {
         packAddedCount.setBounds(550, 520, 250, 20);
 
 
-        labelAdded.setBounds(50, 140, 530, 400);
-        labelAddedTwo.setBounds(50, 160, 530, 400);
-        labelAddedThree.setBounds(50, 180, 530, 400);
-        labelAddedFour.setBounds(50, 200, 530, 400);
-        labelAddedFive.setBounds(50, 220, 530, 400);
+        labelAdded.setBounds(50, 140, 950, 400);
+        labelAddedTwo.setBounds(50, 160, 950, 400);
+        labelAddedThree.setBounds(50, 180, 950, 400);
+        labelAddedFour.setBounds(50, 200, 950, 400);
+        labelAddedFive.setBounds(50, 220, 950, 400);
 
 
         //Add name field for notecard pack
