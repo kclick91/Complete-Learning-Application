@@ -65,16 +65,46 @@ public class Events implements ActionListener {
     JButton showOnlyFrontForward;
     JButton showOnlyFrontBackward;
     JButton showRandom;
+    JButton butFT;
 
     int packCount = 1;
     int cardCount = 1;
 
+    JFrame openingFrame;
+    JFrame frame;
+    JFrame frameTwo;
+
+
+    JButton bNotecards;
+    JLabel test;//second frame
     public Events()
     {
-        JFrame frame = new JFrame();
+        openingFrame = new JFrame();
+        bNotecards = new JButton();
+        bNotecards.setText("Notecards");
+        bNotecards.setBounds(50,50, 200, 200);
+
+        openingFrame.getContentPane().add(bNotecards);
+
+
+
+
+
+        frame = new JFrame();
+
+        //Second Frame
+        frameTwo = new JFrame();
+        butFT = new JButton();
+        butFT.setText("NEXT FRAME TEST");
+        butFT.setBounds(50, 650, 230, 30);
         frame.setSize(700, 400);
         frame.setLayout(null);
-        frame.setVisible(true);
+
+
+
+        //frameTwo.setSize(700, 400);
+        //frameTwo.setLayout(null);
+        //frame.setVisible(true);
         //Main myWindow = new Main("CLA");
         //myWindow.setSize(750,500);
         //myWindow.setVisible(true);
@@ -227,12 +257,23 @@ public class Events implements ActionListener {
         frame.getContentPane().add(enterID);
         frame.getContentPane().add(enterLabel);
         frame.getContentPane().add(setPackIDLabel);
+        frame.getContentPane().add(butFT);
+
+
+
+
         //frame.getContentPane().add(packID);
         //frame.doLayout();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(null);
-        frame.pack();
-        frame.setVisible(true);
+        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //frame.setLayout(null);
+        //frame.pack();
+        openingFrame.doLayout();
+        openingFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        openingFrame.setLayout(null);
+        openingFrame.pack();
+        openingFrame.setVisible(true);
+        //Frame set visible from button on originalFrame
+        //frame.setVisible(true);
         bAddNewCard.addActionListener(this::actionPerformed);
         //Button that adds pack of notecards
         bAddPack.addActionListener(this::actionPerformedTwo);
@@ -240,6 +281,15 @@ public class Events implements ActionListener {
         prevButton.addActionListener(this::actionPerformedFour);
         bCoverBack.addActionListener(this::actionPerformedFive);
         setPack.addActionListener(this::actionPerformedSix);
+        butFT.addActionListener(this::actionPerformedSeven);
+        bNotecards.addActionListener(this::actionPerformedEight);
+
+        frameTwo.setSize(700, 400);
+        frameTwo.setLayout(null);
+        test = new JLabel();
+        test.setText("TESTING LABEL IN NEW FRAME");
+        test.setBounds(400, 400, 250, 50);
+
     }
 
 
@@ -297,6 +347,10 @@ public class Events implements ActionListener {
     }
 
     public void actionPerformedThree(ActionEvent e) {
+        labelAddedTwo.setText("");
+        labelAddedThree.setText("");
+        labelAddedFour.setText("");
+        labelAddedFive.setText("");
         //Next
 
         //NotecardPack np = noteCardPacks.get(packCount - 1);
@@ -327,6 +381,10 @@ public class Events implements ActionListener {
     }
 
     public void actionPerformedFour(ActionEvent e) {
+        labelAddedTwo.setText("");
+        labelAddedThree.setText("");
+        labelAddedFour.setText("");
+        labelAddedFive.setText("");
         //Previous
 
         //NotecardPack np = noteCardPacks.get(packCount);
@@ -371,6 +429,27 @@ public class Events implements ActionListener {
     {
         packNumber = Integer.parseInt(packIDTF.getText());
         setPackIDLabel.setText(String.valueOf(packNumber));
+    }
+
+    public void actionPerformedSeven(ActionEvent e) {
+
+        frameTwo.setVisible(true);
+        frameTwo.getContentPane().add(test);
+
+
+
+    }
+
+    public void actionPerformedEight(ActionEvent e)
+    {
+        ShowNotecardPage();
+    }
+    //List notecard packs by Name
+
+
+    public void ShowNotecardPage()
+    {
+        frame.setVisible(true);
     }
 
 
