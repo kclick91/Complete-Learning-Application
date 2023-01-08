@@ -6,9 +6,12 @@ import java.util.ArrayList;
 
 
 //To do List
-//1. Hide back side of notecard - DONE
-//2. Access notecard packs by ID and use more than one notecard
-
+//1. Know or don't know
+//2. Saving to text files
+//3. Web of notecard packs
+//4. Additional terms/concepts listed at bottom of front of card or back of card
+//5. Processes
+//6. Timed Terms
 public class Events implements ActionListener {
     //TextField text = new TextField(50);
     //TextField textTwo = new TextField(50);
@@ -25,6 +28,8 @@ public class Events implements ActionListener {
     JButton bNum;
     JButton bPack;
      */
+    RJ rjOne = new RJ();
+
     JLabel lNCF;
     JLabel lNCB;
     JLabel lNum;
@@ -71,12 +76,18 @@ public class Events implements ActionListener {
     int cardCount = 1;
 
     JFrame openingFrame;
-    JFrame frame;
+    JFrame frame;//Notecards
     JFrame frameTwo;
+    JFrame frameThree;//Timed Terms
 
 
     JButton bNotecards;
     JLabel test;//second frame
+
+    JButton bTimedTerms;
+
+    JButton know = new JButton();
+    JButton dontKnow = new JButton();
     public Events()
     {
         openingFrame = new JFrame();
@@ -84,8 +95,14 @@ public class Events implements ActionListener {
         bNotecards.setText("Notecards");
         bNotecards.setBounds(50,50, 200, 200);
 
-        openingFrame.getContentPane().add(bNotecards);
+        bTimedTerms = new JButton();
+        bTimedTerms.setText("Timed Terms");
+        bTimedTerms.setBounds(300, 50, 200, 200);
 
+        openingFrame.getContentPane().add(bNotecards);
+        openingFrame.getContentPane().add(bTimedTerms);
+
+        //RJ rjOne = new RJ();
 
 
 
@@ -99,6 +116,13 @@ public class Events implements ActionListener {
         butFT.setBounds(50, 650, 230, 30);
         frame.setSize(700, 400);
         frame.setLayout(null);
+
+        frameThree = new JFrame();
+        frameThree.setSize(700, 400);
+        frameThree.setLayout(null);
+
+
+
 
 
 
@@ -283,12 +307,15 @@ public class Events implements ActionListener {
         setPack.addActionListener(this::actionPerformedSix);
         butFT.addActionListener(this::actionPerformedSeven);
         bNotecards.addActionListener(this::actionPerformedEight);
+        bTimedTerms.addActionListener(this::actionPerformedNine);
 
         frameTwo.setSize(700, 400);
         frameTwo.setLayout(null);
         test = new JLabel();
         test.setText("TESTING LABEL IN NEW FRAME");
         test.setBounds(400, 400, 250, 50);
+
+
 
     }
 
@@ -446,11 +473,14 @@ public class Events implements ActionListener {
     }
     //List notecard packs by Name
 
+    public void actionPerformedNine(ActionEvent e) {ShowTimedTermsPage();}
 
     public void ShowNotecardPage()
     {
         frame.setVisible(true);
     }
+
+    public void ShowTimedTermsPage(){ frameThree.setVisible(true);}
 
 
 }
