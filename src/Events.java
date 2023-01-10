@@ -88,6 +88,13 @@ public class Events implements ActionListener {
 
     JButton know = new JButton();
     JButton dontKnow = new JButton();
+
+    //Frame Three
+    JButton bAddTerm;
+    JTextField tfSetTerm;
+    JTextField tfSetDefinition;
+
+
     public Events()
     {
         openingFrame = new JFrame();
@@ -317,6 +324,7 @@ public class Events implements ActionListener {
 
 
 
+
     }
 
 
@@ -480,7 +488,22 @@ public class Events implements ActionListener {
         frame.setVisible(true);
     }
 
-    public void ShowTimedTermsPage(){ frameThree.setVisible(true);}
+    public void ShowTimedTermsPage(){
+        bAddTerm = new JButton();
+        bAddTerm.setBounds(50, 150, 100, 20);
+        bAddTerm.setText("Add Term");
+        tfSetTerm = new JTextField();
+        tfSetTerm.setBounds(50, 50, 200, 20);
+        tfSetTerm.setText("TERM GOES HERE");
+        tfSetDefinition = new JTextField();
+        tfSetDefinition.setBounds(50, 100, 200, 20);
+        tfSetDefinition.setText("DEFINITION GOES HERE");
+        frameThree.getContentPane().add(bAddTerm);
+        frameThree.getContentPane().add(tfSetTerm);
+        frameThree.getContentPane().add(tfSetDefinition);
+
+        frameThree.setVisible(true);
+    }
 
 
 }
