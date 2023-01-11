@@ -93,6 +93,9 @@ public class Events implements ActionListener {
     JButton bAddTerm;
     JTextField tfSetTerm;
     JTextField tfSetDefinition;
+    JLabel addedTerm;
+
+    TermPack terms = new TermPack();
 
 
     public Events()
@@ -123,6 +126,7 @@ public class Events implements ActionListener {
         butFT.setBounds(50, 650, 230, 30);
         frame.setSize(700, 400);
         frame.setLayout(null);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         frameThree = new JFrame();
         frameThree.setSize(700, 400);
@@ -257,6 +261,9 @@ public class Events implements ActionListener {
         labelAddedFour.setBounds(50, 200, 950, 400);
         labelAddedFive.setBounds(50, 220, 950, 400);
 
+        //Frame Three
+        bAddTerm = new JButton();
+
 
         //Add name field for notecard pack
         frame.getContentPane().add(lNCF);
@@ -302,6 +309,7 @@ public class Events implements ActionListener {
         openingFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         openingFrame.setLayout(null);
         openingFrame.pack();
+        openingFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         openingFrame.setVisible(true);
         //Frame set visible from button on originalFrame
         //frame.setVisible(true);
@@ -315,8 +323,10 @@ public class Events implements ActionListener {
         butFT.addActionListener(this::actionPerformedSeven);
         bNotecards.addActionListener(this::actionPerformedEight);
         bTimedTerms.addActionListener(this::actionPerformedNine);
+        bAddTerm.addActionListener(this::actionPerformedTen);
 
         frameTwo.setSize(700, 400);
+        frameTwo.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frameTwo.setLayout(null);
         test = new JLabel();
         test.setText("TESTING LABEL IN NEW FRAME");
@@ -483,15 +493,25 @@ public class Events implements ActionListener {
 
     public void actionPerformedNine(ActionEvent e) {ShowTimedTermsPage();}
 
+    public void actionPerformedTen(ActionEvent e)
+    {
+        terms.GetTermPack().add(new Term(tfSetTerm.getText(), tfSetDefinition.getText()));
+        addedTerm.setText("Added term: " + tfSetTerm.getText());
+
+
+    }
+
     public void ShowNotecardPage()
     {
         frame.setVisible(true);
     }
 
     public void ShowTimedTermsPage(){
-        bAddTerm = new JButton();
         bAddTerm.setBounds(50, 150, 100, 20);
         bAddTerm.setText("Add Term");
+        addedTerm = new JLabel();
+        addedTerm.setText("Term Label");
+        addedTerm.setBounds(50, 200, 300, 20);
         tfSetTerm = new JTextField();
         tfSetTerm.setBounds(50, 50, 200, 20);
         tfSetTerm.setText("TERM GOES HERE");
@@ -501,7 +521,10 @@ public class Events implements ActionListener {
         frameThree.getContentPane().add(bAddTerm);
         frameThree.getContentPane().add(tfSetTerm);
         frameThree.getContentPane().add(tfSetDefinition);
+        frameThree.getContentPane().add(addedTerm);
 
+
+        frameThree.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frameThree.setVisible(true);
     }
 

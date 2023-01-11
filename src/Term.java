@@ -10,10 +10,10 @@ public class Term {
     {
         latestFiveArr = new long[]{-1, -1, -1, -1, -1};
     }
-    public Term(String def, String t)
+    public Term(String t, String def)
     {
-        definition = def;
         term = t;
+        definition = def;
     }
     public long SetLatestFiveAverage(long[] l)
     {

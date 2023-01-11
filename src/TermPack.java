@@ -5,7 +5,7 @@ public class TermPack {
     ArrayList<Term> termPackList;
     public TermPack()
     {
-
+        termPackList = new ArrayList<>();
     }
 
     public void AddToTermPack(Term t)
@@ -13,7 +13,7 @@ public class TermPack {
         termPackList.add(t);
     }
 
-    public ArrayList<Term> ReturnTermPack()
+    public ArrayList<Term> GetTermPack()
     {
         return termPackList;
     }
