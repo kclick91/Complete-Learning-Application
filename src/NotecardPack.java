@@ -5,11 +5,15 @@ public class NotecardPack {
     private String name;
     private int packID;//High usage
 
+
+
     public NotecardPack(String n, int iD)
     {
         name = n;
         cardsList = new ArrayList<Notecard>();
         packID = iD;
+
+
     }
 
     public NotecardPack(ArrayList<Notecard> cL)
@@ -29,6 +33,11 @@ public class NotecardPack {
     public Notecard GetCard(int index)
     {
         return cardsList.get(index - 1);
+    }
+
+    public String GetNotecardPackName()
+    {
+        return name;
     }
 
 }

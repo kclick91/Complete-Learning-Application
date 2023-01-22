@@ -89,13 +89,26 @@ public class Events implements ActionListener {
     JButton know = new JButton();
     JButton dontKnow = new JButton();
 
-    //Frame Three
+    //BEGINNING OF FRAME THREE
     JButton bAddTerm;
     JTextField tfSetTerm;
     JTextField tfSetDefinition;
     JLabel addedTerm;
 
-    TermPack terms = new TermPack();
+    JLabel definitionShow;
+    JTextField termEnter;
+    JButton addTerm;
+
+    JTextField enterTermPack;
+
+    JButton termForward;
+    JButton termBackward;
+
+    TermPack terms;
+
+    //END OF FRAME THREE
+
+    ArrayList<TermPack> termPacks = new ArrayList<TermPack>();
 
 
     public Events()
@@ -346,26 +359,58 @@ public class Events implements ActionListener {
         System.out.println(backField.getText());
         System.out.println(lPack.getText());
         System.out.println(enterID.getText());
-        cardCount = cardCount + 1;
 
-        //packCount
-        //notecardPack = new NotecardPack(packName.getText(), packCount);
+
+        //PACK NAME AND PACK ID ARE MATCHED
+        String packNameAdded = packName.getText();
+        int packIDEntered = Integer.parseInt(enterID.getText());
+
+        //Name and id match
+        System.out.println("NAME AND ID");
+        System.out.println(packNameAdded);
+        System.out.println(packIDEntered);
+
+        System.out.println("NAME AND ID NCP");
+        System.out.println(packNameAdded);
+        System.out.println(noteCardPacks.get(packIDEntered - 1).GetNotecardPackName());
+
+
+        //End of name and id match
+        if (packNameAdded.equals(noteCardPacks.get(packIDEntered - 1).GetNotecardPackName()))
+        {
+            cardCount = cardCount + 1;
+
+            //packCount
+            //notecardPack = new NotecardPack(packName.getText(), packCount);
         /*
         notecardPack.AddToPack(new Notecard(frontField.getText(), backField.getText()));
         noteCardPacks.add(notecardPack);
         */
 
-        labelAdded.setText("Added: ");
-        labelAddedTwo.setText(frontField.getText());
-        labelAddedThree.setText(backField.getText());
-        labelAddedFour.setText(packName.getText());
-        labelAddedFive.setText(enterID.getText());
+            labelAdded.setText("Added: ");
+            labelAddedTwo.setText(frontField.getText());
+            labelAddedThree.setText(backField.getText());
+            labelAddedFour.setText(packName.getText());
+            labelAddedFive.setText(enterID.getText());
 
-        //Get notecardPack.get(iD - 1).front
+            //Get notecardPack.get(iD - 1).front
 
-        //notecardPack.AddToPack(new Notecard(frontField.getText(), backField.getText()));
+            //notecardPack.AddToPack(new Notecard(frontField.getText(), backField.getText()));
 
-        noteCardPacks.get(Integer.parseInt(enterID.getText()) - 1).AddToPack(new Notecard(frontField.getText(), backField.getText()));
+            noteCardPacks.get(Integer.parseInt(enterID.getText()) - 1).AddToPack(new Notecard(frontField.getText(), backField.getText()));
+
+        }
+        else
+        {
+            labelAdded.setText("NAME AND ID DO NOT MATCH");
+            labelAddedTwo.setText("");
+            labelAddedThree.setText("");
+            labelAddedFour.setText("");
+            labelAddedFive.setText("");
+        }
+
+
+
 
 
 
@@ -374,6 +419,7 @@ public class Events implements ActionListener {
 
     public void actionPerformedTwo(ActionEvent e) {
         noteCardPacks.add(new NotecardPack(addPackTextField.getText(), packCount));
+        //System.out.println("APT " + addPackTextField.getText() + ",   " + packCount);
         packCount = packCount + 1;
         packAdded.setText("Added: " + addPackTextField.getText());
         packAddedCount.setText("Number of packs:  " + packCount);
@@ -495,6 +541,7 @@ public class Events implements ActionListener {
 
     public void actionPerformedTen(ActionEvent e)
     {
+
         terms.GetTermPack().add(new Term(tfSetTerm.getText(), tfSetDefinition.getText()));
         addedTerm.setText("Added term: " + tfSetTerm.getText());
 
@@ -507,6 +554,7 @@ public class Events implements ActionListener {
     }
 
     public void ShowTimedTermsPage(){
+        //Frame Three
         bAddTerm.setBounds(50, 150, 100, 20);
         bAddTerm.setText("Add Term");
         addedTerm = new JLabel();
@@ -518,15 +566,41 @@ public class Events implements ActionListener {
         tfSetDefinition = new JTextField();
         tfSetDefinition.setBounds(50, 100, 200, 20);
         tfSetDefinition.setText("DEFINITION GOES HERE");
+
+        definitionShow = new JLabel();
+        definitionShow.setText("DEFINITION IS SHOWN HERE");
+        definitionShow.setBounds(500, 50, 200, 20);
+
+        termEnter = new JTextField();
+        termEnter.setText("ENTER TERM HERE");
+        termEnter.setBounds(500, 100, 200, 20);
+        addTerm = new JButton();
+
+        enterTermPack = new JTextField();
+        //enterTermPack.setBounds();
+
+        termForward = new JButton();
+        termBackward = new JButton();
+
+        terms = new TermPack();
+
         frameThree.getContentPane().add(bAddTerm);
         frameThree.getContentPane().add(tfSetTerm);
         frameThree.getContentPane().add(tfSetDefinition);
         frameThree.getContentPane().add(addedTerm);
+        frameThree.getContentPane().add(definitionShow);
+        frameThree.getContentPane().add(termEnter);
+
+
 
 
         frameThree.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frameThree.setVisible(true);
     }
 
+    public void actionPerformedOneFrameThree(ActionEvent e)
+    {
+        
+    }
 
 }

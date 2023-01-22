@@ -1,9 +1,11 @@
 public class Term {
 
     protected String definition;
+    protected String[] definitions;
     protected String term;
     protected long latestFiveAverage;
     protected long[] latestFiveArr;
+    protected int currentTerm = 0;
 
 
     public Term()
@@ -13,7 +15,7 @@ public class Term {
     public Term(String t, String def)
     {
         term = t;
-        definition = def;
+        definitions[currentTerm] = def;
     }
     public long SetLatestFiveAverage(long[] l)
     {
@@ -47,4 +49,11 @@ public class Term {
         }
         return atf;
     }
+
+    public String GetDefinition(int defNum)
+    {
+        return definitions[defNum];
+    }
+
+
 }
