@@ -72,6 +72,12 @@ public class Events implements ActionListener {
     JButton showRandom;
     JButton butFT;
 
+    //EDIT PACK NAME
+    JButton beditPackName;
+    JTextField tfEditPackName;
+    JTextField tfEditPackNameID;
+    JLabel lEditPackName;
+
     int packCount = 1;
     int cardCount = 1;
 
@@ -181,6 +187,18 @@ public class Events implements ActionListener {
         bAddNewCard.setBounds(50, 300, 230, 30);
         bAddPack = new JButton("Add a Pack of Notecards");
         bAddPack.setBounds(50, 500, 230, 30);
+
+        //Edit Pack Name
+
+        beditPackName = new JButton("Edit Pack Name");
+        beditPackName.setBounds(50, 550, 230, 30);
+        tfEditPackName = new JTextField("ENTER NEW PACK NAME");
+        tfEditPackName.setBounds(350, 550, 150, 20);
+        tfEditPackNameID = new JTextField("ENTER PACK ID");
+        tfEditPackNameID.setBounds(550, 550, 100, 20);
+        lEditPackName = new JLabel("New Name Shown Here");
+        lEditPackName.setBounds(650, 550, 230, 30);
+
 
         //Next, Previous Buttons
         prevButton = new JButton();
@@ -309,6 +327,10 @@ public class Events implements ActionListener {
         frame.getContentPane().add(enterLabel);
         frame.getContentPane().add(setPackIDLabel);
         frame.getContentPane().add(butFT);
+        frame.getContentPane().add(beditPackName);
+        frame.getContentPane().add(tfEditPackName);
+        frame.getContentPane().add(tfEditPackNameID);
+        frame.getContentPane().add(lEditPackName);
 
 
 
@@ -337,6 +359,7 @@ public class Events implements ActionListener {
         bNotecards.addActionListener(this::actionPerformedEight);
         bTimedTerms.addActionListener(this::actionPerformedNine);
         bAddTerm.addActionListener(this::actionPerformedTen);
+        beditPackName.addActionListener(this::actionPerformedEleven);
 
         frameTwo.setSize(700, 400);
         frameTwo.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -548,6 +571,13 @@ public class Events implements ActionListener {
 
     }
 
+    public void actionPerformedEleven(ActionEvent e)
+    {
+        //tfEditPackName
+        noteCardPacks.get(Integer.parseInt(tfEditPackNameID.getText()) - 1).SetNotecardPackName(tfEditPackName.getText());
+        lEditPackName.setText("New Name: " + tfEditPackName.getText());
+    }
+
     public void ShowNotecardPage()
     {
         frame.setVisible(true);
@@ -600,7 +630,7 @@ public class Events implements ActionListener {
 
     public void actionPerformedOneFrameThree(ActionEvent e)
     {
-        
+
     }
 
 }

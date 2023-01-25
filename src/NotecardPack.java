@@ -39,5 +39,9 @@ public class NotecardPack {
     {
         return name;
     }
+    public void SetNotecardPackName(String n)
+    {
+        name = n;
+    }
 
 }
