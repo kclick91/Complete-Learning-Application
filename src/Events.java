@@ -205,7 +205,7 @@ public class Events implements ActionListener {
         cardDisplayBack.setBounds(900, 100, 950, 600);
 
 
-        notecardPack = new NotecardPack("First Pack",1);
+        notecardPack = new NotecardPack("PACK NAME",1);
         noteCardPacks.add(notecardPack);
 
         setPack = new JButton();
